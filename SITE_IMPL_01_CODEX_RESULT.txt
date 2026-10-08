@@ -1,0 +1,150 @@
+SITE_IMPL_01_RESULT
+
+CURRENT_DIRECTORY=/Users/hamilton.pereiradasilvagmail.com
+PROJECT_DIRECTORY=/Users/hamilton.pereiradasilvagmail.com/transputer-revival
+
+FRAMEWORK=Astro
+FRAMEWORK_VERSION=7.3.8
+NODE_VERSION=v24.19.0
+PACKAGE_MANAGER=npm
+PACKAGE_MANAGER_VERSION=11.17.0
+
+TYPESCRIPT=YES (6.0.3)
+REACT_INSTALLED=NO
+REACT_REASON=Astro/native browser behavior was sufficient for the foundation.
+
+LOCALES=en,pt,de,fr
+ROOT_LANGUAGE_SELECTOR=YES
+EN_ROUTE=/en/
+PT_ROUTE=/pt/
+DE_ROUTE=/de/
+FR_ROUTE=/fr/
+
+CONTENT_SYSTEM=Typed TypeScript data modules in src/data, separated from presentation.
+PROJECT_STATUS_SYSTEM=src/data/project-status.ts with PASS_BUILD, PASS_HW, IN_TEST, PLANNED.
+ARCHITECTURE_EXPLORER=Accessible SVG/CSS/TypeScript layer explorer with keyboard-focusable buttons.
+REDUCED_MOTION_SUPPORT=YES (prefers-reduced-motion CSS disables SVG motion)
+RESPONSIVE_FOUNDATION=YES
+ACCESSIBILITY_FOUNDATION=YES
+SEO_FOUNDATION=YES (titles, descriptions, canonical, hreflang, Open Graph)
+SITEMAP=YES (/sitemap.xml)
+ROBOTS_TXT=YES
+
+DATABASE_ADDED=NO
+AUTH_ADDED=NO
+ANALYTICS_ADDED=NO
+PAYMENT_ADDED=NO
+CLOUDFLARE_DEPLOYMENT_PERFORMED=NO
+DNS_MODIFIED=NO
+GITHUB_REPOSITORY_CREATED=NO
+GIT_REPOSITORY_CREATED=NO
+GIT_COMMIT_PERFORMED=NO
+
+T425_CANONICAL_TOUCHED=NO
+
+TYPECHECK_COMMAND=npm run check
+TYPECHECK_RC=0
+
+BUILD_COMMAND=npm run build
+BUILD_RC=0
+
+BUILD_OUTPUT_DIRECTORY=/Users/hamilton.pereiradasilvagmail.com/transputer-revival/dist
+
+TOTAL_PROJECT_FILES=24 (project files excluding node_modules and dist)
+TOTAL_SOURCE_FILES=17
+
+IMPORTANT_FILES=
+package.json
+astro.config.mjs
+src/layouts/SiteLayout.astro
+src/components/Header.astro
+src/components/ArchitectureExplorer.astro
+src/components/HeroNetwork.astro
+src/components/StatusBadge.astro
+src/data/project-status.ts
+src/pages/index.astro
+src/pages/en/index.astro
+src/pages/pt/index.astro
+src/pages/en/[section].astro
+src/pages/pt/[section].astro
+src/pages/de/index.astro
+src/pages/fr/index.astro
+src/pages/sitemap.xml.ts
+src/pages/robots.txt.ts
+public/asset-provenance.md
+SITE_IMPL_01_CODEX_RESULT.txt
+
+ROUTES_CREATED=
+/
+/en/
+/pt/
+/de/
+/fr/
+/en/learn/
+/en/labs/
+/en/projects/
+/en/architecture/
+/en/history/
+/en/documentation/
+/en/community/
+/en/support/
+/en/about/
+/pt/learn/
+/pt/labs/
+/pt/projects/
+/pt/architecture/
+/pt/history/
+/pt/documentation/
+/pt/community/
+/pt/support/
+/pt/about/
+/sitemap.xml
+/robots.txt
+
+WARNINGS=
+The initial install emitted only the standard Astro telemetry notice; no typecheck/build warnings.
+German and French are intentionally concise preparation pages, as requested.
+BOOT/deployment and browser automation were not required for this local foundation.
+
+ERRORS=NONE
+
+ARCHITECTURAL_DEVIATIONS=
+NONE
+
+FINAL_VERDICT=PASS_FOUNDATION
+
+GENERATED_DIRECTORY_TREE=
+src/components/{ArchitectureExplorer,Footer,Header,HeroNetwork,StatusBadge}.astro
+src/data/{content,project-status}.ts
+src/layouts/SiteLayout.astro
+src/pages/{index.astro,robots.txt.ts,sitemap.xml.ts}
+src/pages/en/{index.astro,[section].astro}
+src/pages/pt/{index.astro,[section].astro}
+src/pages/de/index.astro
+src/pages/fr/index.astro
+public/asset-provenance.md
+dist/ (generated static output)
+
+DEPENDENCIES_ADDED=
+astro@7.3.8
+@astrojs/check@0.9.10
+typescript@6.0.3
+
+SCRIPTS_AVAILABLE=
+npm run dev
+npm run check
+npm run build
+
+IMPLEMENTED_COMPONENTS=
+Header with persistent locale selector, Footer, project status badge, network hero SVG, keyboard-selectable architecture explorer, shared layout metadata, and responsive CSS foundation.
+
+LOCALIZATION_ARCHITECTURE=
+Locale roots are explicit (/en, /pt, /de, /fr). English and Portuguese have shared representative section routes; German and French have legitimate concise landing pages ready for expansion. The root is a language entry page without automatic browser redirects.
+
+STATUS_DATA_ARCHITECTURE=
+Project states are centralized in src/data/project-status.ts with a closed vocabulary and rendered through StatusBadge. LINKUSB records only known evidence, while other projects remain IN_TEST or PLANNED.
+
+VALIDATION_COMMANDS_AND_RETURN_CODES=
+npm install (0; 266 packages installed, 0 vulnerabilities)
+npm run check (0; 0 errors, 0 warnings, 0 hints)
+npm run build (0; 23 static pages generated)

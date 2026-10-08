@@ -1,0 +1,15 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import HeroNetwork from '../../components/HeroNetwork.astro';
+import ArchitectureExplorer from '../../components/ArchitectureExplorer.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import { projects } from '../../data/project-status';
+import { lessons } from '../../data/content';
+---
+<SiteLayout title="Learn, preserve, experiment" description="An independent educational and engineering portal for Transputer architecture." locale="en">
+<section class="hero section"><div class="shell hero-grid"><div><div class="eyebrow">Education · preservation · open engineering</div><h1>Concurrency you can hold in your hands.</h1><p class="lead">Transputer Revival is a living notebook for understanding the Transputer, rebuilding the experiments around it, and measuring what modern implementations actually do.</p><a class="button" href="/en/learn/">Start learning <span aria-hidden="true">↗</span></a></div><HeroNetwork /></div></section>
+<section class="section"><div class="shell"><div class="eyebrow">A path through the machine</div><h2>Theory to evidence</h2><p>Every lesson can move from original architecture to primary documentation, modern implementation, experiment, measured evidence and exercises.</p><ArchitectureExplorer /></div></section>
+<section class="section"><div class="shell"><div class="eyebrow">Field notes</div><div class="grid grid-3">{lessons.map((lesson)=><article class="card"><h3>{lesson.title}</h3><p>{lesson.text}</p><a href="/en/learn/" class="mono">Open lesson →</a></article>)}</div></div></section>
+<section class="section"><div class="shell"><div class="eyebrow">Projects</div><h2>Small experiments, clear status.</h2><div class="grid grid-2">{projects.map((project)=><article class="card"><div style="display:flex;justify-content:space-between;gap:1rem;align-items:start"><h3>{project.name}</h3><StatusBadge status={project.status}/></div><p>{project.summary}</p><a href="/en/projects/" class="mono">Project notes →</a></article>)}</div></div></section>
+</SiteLayout>
+<style>.hero{padding-top:6rem}.hero-grid{display:grid;gap:3rem;align-items:center}.lead{font-size:1.15rem;max-width:53ch}@media(min-width:850px){.hero-grid{grid-template-columns:1fr 1fr}.hero{padding-top:8rem}}</style>

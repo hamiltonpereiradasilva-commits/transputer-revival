@@ -1,0 +1,6 @@
+---
+import { statusLabel, type ProjectStatus } from '../data/project-status';
+const { status } = Astro.props as { status: ProjectStatus };
+---
+<span class={`status status-${status.toLowerCase()}`}><span aria-hidden="true">●</span> {statusLabel[status]}</span>
+<style>.status{display:inline-flex;gap:.4rem;align-items:center;font:500 .72rem 'DM Mono',monospace;color:var(--cyan);border:1px solid #315c5b;border-radius:999px;padding:.35rem .6rem}.status-pass_hw{color:#9be7b0;border-color:#38694b}.status-planned{color:var(--muted);border-color:var(--line)}.status-in_test{color:var(--amber);border-color:#695232}</style>

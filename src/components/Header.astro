@@ -1,0 +1,8 @@
+---
+import { nav, locales } from '../data/content';
+const { locale = 'en' } = Astro.props;
+const prefix = locale === 'en' ? '/en' : `/${locale}`;
+---
+<header class="site-header"><div class="shell nav-wrap"><a class="brand" href="/" aria-label="Transputer Revival home"><span class="brand-mark">◎</span><span>TRANSPUTER<br /><b>REVIVAL</b></span></a><nav aria-label="Primary"><a href={`${prefix}/`}>Home</a>{nav.slice(0,5).map(([label,slug])=><a href={`${prefix}/${slug}/`}>{label}</a>)}</nav><div class="langs" aria-label="Language selector">{Object.entries(locales).map(([code,label])=><a class:list-active={code===locale} href={`/${code}/`} lang={code} title={label}>{code.toUpperCase()}</a>)}</div></div></header>
+<style>.site-header{border-bottom:1px solid var(--line);background:#081016cc;backdrop-filter:blur(12px);position:sticky;top:0;z-index:5}.nav-wrap{display:flex;align-items:center;gap:1.5rem;min-height:74px}.brand{display:flex;align-items:center;gap:.65rem;font:500 .69rem 'DM Mono',monospace;letter-spacing:.08em;line-height:1.05;white-space:nowrap}.brand-mark{font-size:1.8rem;color:var(--cyan)}.brand b{color:var(--cyan)}nav{display:none;gap:1rem;flex:1}nav a{color:var(--muted);font-size:.88rem}nav a:hover{color:var(--ink)}.langs{margin-left:auto;display:flex;gap:.55rem;font:500 .72rem 'DM Mono',monospace}.langs a{color:var(--muted)}.langs .list-active{color:var(--cyan)}@media(min-width:900px){nav{display:flex}.nav-wrap{gap:2rem}}@media(max-width:500px){.brand{font-size:.61rem}.langs{gap:.3rem}}
+</style>

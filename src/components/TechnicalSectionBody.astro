@@ -32,7 +32,7 @@ const copy = locale === 'pt' ? {
 {section === 'projects' && <>
   <p class="callout"><strong>{copy.evidence}</strong></p>
   <div class="legend" aria-label={copy.legend}><span><i class="dot build"></i>{copy.build}</span><span><i class="dot hardware"></i>{copy.hardware}</span><span><i class="dot test"></i>{copy.test}</span><span><i class="dot planned"></i>{copy.planned}</span></div>
-  <div class="project-list">{projects.map((project) => <article class="card"><div class="project-head"><h3>{project.name}</h3><StatusBadge status={project.status}/></div><p>{project.summary}</p><p class="evidence-note">{copy.evidence}</p></article>)}</div>
+  <div class="project-list">{projects.map((project) => <article class="card"><div class="project-head"><h3>{project.name}</h3><StatusBadge status={project.status}/></div><p>{project.summary}</p><p class="evidence-note">{copy.evidence}</p>{project.slug === 't425-sim' && <a class="mono" href={`${locale === 'pt' ? '/pt' : '/en'}/projects/t425-sim/`}>{locale === 'pt' ? 'Abrir página técnica →' : 'Open technical page →'}</a>}</article>)}</div>
 </>}
 {section === 'documentation' && <div class="taxonomy-grid">{docs.map(([name, description], index) => <article class="card"><div class="eyebrow">0{index + 1}</div><h3>{name}</h3><p>{description}</p></article>)}</div>}
 {section === 'labs' && <>

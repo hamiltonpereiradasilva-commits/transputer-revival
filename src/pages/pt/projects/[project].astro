@@ -1,0 +1,9 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import T425SimProject from '../../../components/T425SimProject.astro';
+import { t425SimContent } from '../../../data/t425-sim';
+export function getStaticPaths(){ return [{ params: { project: 't425-sim' }, props: { locale: 'pt' } }]; }
+const copy = t425SimContent.pt;
+---
+<SiteLayout title={copy.title} description={copy.description} locale="pt"><section class="section"><div class="shell project-shell"><div class="eyebrow">{copy.eyebrow}</div><h1>{copy.title}</h1><T425SimProject locale="pt" /></div></section></SiteLayout>
+<style>.project-shell{max-width:1040px}.project-shell>h1{margin-top:.5rem}</style>

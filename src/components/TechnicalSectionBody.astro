@@ -1,0 +1,44 @@
+---
+import ArchitectureExplorer from './ArchitectureExplorer.astro';
+import StatusBadge from './StatusBadge.astro';
+import { projects } from '../data/project-status';
+import { architectureLayers, documentationTaxonomy, labRecord, type TechnicalLocale } from '../data/technical-content';
+const { section, locale } = Astro.props as { section: string; locale: TechnicalLocale };
+const layers = architectureLayers[locale];
+const docs = documentationTaxonomy[locale];
+const records = labRecord[locale];
+const copy = locale === 'pt' ? {
+  conceptual: 'Mapa conceitual — não é prova de que todas as camadas estejam completas.',
+  conceptualBody: 'A ordem preserva uma forma de pensar sobre responsabilidades. Cada projeto deve dizer quais camadas realmente exercita e quais permanecem fora do experimento.',
+  layerResponsibility: 'Responsabilidade da camada',
+  evidence: 'O status representa o nível de evidência disponível, não maturidade de marketing.',
+  legend: 'Legenda de evidência',
+  build: 'Build validado', hardware: 'Hardware validado', test: 'Em teste', planned: 'Planejado',
+  question: 'Um registro de laboratório precisa ligar uma pergunta a uma medição reproduzível.'
+} : {
+  conceptual: 'Conceptual map — not proof that every layer is complete.',
+  conceptualBody: 'The ordering is a way to reason about responsibilities. Each project should say which layers it actually exercises and which remain outside the experiment.',
+  layerResponsibility: 'Layer responsibility',
+  evidence: 'Status represents available evidence, not marketing maturity.',
+  legend: 'Evidence legend', build: 'Build validated', hardware: 'Hardware validated', test: 'In test', planned: 'Planned',
+  question: 'A lab record connects a question to a reproducible measurement.'
+};
+---
+{section === 'architecture' && <>
+  <div class="callout"><strong>{copy.conceptual}</strong><p>{copy.conceptualBody}</p></div>
+  <ArchitectureExplorer />
+  <div class="layer-grid">{layers.map(([name, description]) => <article class="card"><div class="eyebrow">{copy.layerResponsibility}</div><h3>{name}</h3><p>{description}</p></article>)}</div>
+</>}
+{section === 'projects' && <>
+  <p class="callout"><strong>{copy.evidence}</strong></p>
+  <div class="legend" aria-label={copy.legend}><span><i class="dot build"></i>{copy.build}</span><span><i class="dot hardware"></i>{copy.hardware}</span><span><i class="dot test"></i>{copy.test}</span><span><i class="dot planned"></i>{copy.planned}</span></div>
+  <div class="project-list">{projects.map((project) => <article class="card"><div class="project-head"><h3>{project.name}</h3><StatusBadge status={project.status}/></div><p>{project.summary}</p><p class="evidence-note">{copy.evidence}</p></article>)}</div>
+</>}
+{section === 'documentation' && <div class="taxonomy-grid">{docs.map(([name, description], index) => <article class="card"><div class="eyebrow">0{index + 1}</div><h3>{name}</h3><p>{description}</p></article>)}</div>}
+{section === 'labs' && <>
+  <p class="callout"><strong>{copy.question}</strong></p>
+  <ol class="lab-list">{records.map(([name, description], index) => <li class="card"><div class="eyebrow">{String(index + 1).padStart(2, '0')}</div><h3>{name}</h3><p>{description}</p></li>)}</ol>
+</>}
+<style>
+  .callout{border-left:3px solid var(--cyan);background:#10232a;padding:1rem 1.2rem;margin:1.5rem 0 2rem}.callout p{margin:.5rem 0 0}.layer-grid,.taxonomy-grid{display:grid;gap:1rem;margin-top:2rem}@media(min-width:750px){.layer-grid{grid-template-columns:repeat(2,1fr)}.taxonomy-grid{grid-template-columns:repeat(3,1fr)}}.legend{display:flex;flex-wrap:wrap;gap:.7rem 1.2rem;margin:1.5rem 0;font:500 .74rem 'DM Mono',monospace;color:var(--muted)}.legend span{display:inline-flex;align-items:center;gap:.4rem}.dot{width:.55rem;height:.55rem;border-radius:50%;background:var(--muted)}.dot.build{background:#6ee7d4}.dot.hardware{background:#9be7b0}.dot.test{background:var(--amber)}.project-list{display:grid;gap:1rem}.project-head{display:flex;justify-content:space-between;gap:1rem;align-items:start}.evidence-note{font:500 .75rem 'DM Mono',monospace;color:var(--cyan)}.lab-list{display:grid;gap:1rem;list-style:none;padding:0;margin:1.5rem 0}.lab-list .card{display:grid;grid-template-columns:auto 1fr;column-gap:1rem}.lab-list h3,.lab-list p{grid-column:2}.lab-list .eyebrow{grid-row:1 / span 2}
+</style>

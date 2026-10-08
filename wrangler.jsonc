@@ -1,0 +1,13 @@
+{
+  "name": "transputer-revival",
+  "compatibility_date": "2026-10-06",
+  "assets": {
+    "directory": "./dist"
+  },
+  "routes": [
+    {
+      "pattern": "transputerrevival.org",
+      "custom_domain": true
+    }
+  ]
+}

@@ -1,10 +1,13 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-interface Props { title: string; description: string; locale?: 'en'|'pt'|'de'|'fr'; }
-const { title, description, locale = 'en' } = Astro.props;
+type Locale = 'en' | 'pt' | 'de' | 'fr';
+type Alternates = Partial<Record<Locale, string>>;
+interface Props { title: string; description: string; locale?: Locale; alternates?: Alternates; }
+const { title, description, locale = 'en', alternates = {} } = Astro.props;
 const canonical = new URL(Astro.url.pathname, 'https://transputerrevival.org');
-const locales = ['en','pt','de','fr'];
+const openGraphLocales: Record<Locale, string> = { en: 'en_US', pt: 'pt_BR', de: 'de_DE', fr: 'fr_FR' };
+const alternateEntries = Object.entries(alternates) as [Locale, string][];
 ---
 <!doctype html>
 <html lang={locale}>
@@ -14,10 +17,14 @@ const locales = ['en','pt','de','fr'];
     <title>{title} · Transputer Revival</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {locales.map((code) => <link rel="alternate" hreflang={code} href={`https://transputerrevival.org/${code}/`} />)}
-    <link rel="alternate" hreflang="x-default" href="https://transputerrevival.org/en/" />
+    {alternateEntries.map(([code, path]) => <link rel="alternate" hreflang={code} href={new URL(path, canonical)} />)}
+    {alternates.en && <link rel="alternate" hreflang="x-default" href={new URL(alternates.en, canonical)} />}
     <meta property="og:title" content={`${title} · Transputer Revival`} />
     <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Transputer Revival" />
+    <meta property="og:locale" content={openGraphLocales[locale]} />
+    {alternateEntries.filter(([code]) => code !== locale).map(([code]) => <meta property="og:locale:alternate" content={openGraphLocales[code]} />)}
     <meta property="og:type" content="website" />
   </head>
   <body><Header locale={locale} /><main id="main"> <slot /> </main><Footer /></body>

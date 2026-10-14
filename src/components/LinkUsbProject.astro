@@ -1,0 +1,17 @@
+---
+import StatusBadge from './StatusBadge.astro';
+import { linkUsbContent, type LinkUsbLocale } from '../data/linkusb';
+const { locale } = Astro.props as { locale: LinkUsbLocale };
+const copy = linkUsbContent[locale];
+---
+<div class="project-page">
+  <div class="project-status"><StatusBadge status="PASS_HW" /><p>{copy.statusNote}</p></div>
+  <section aria-labelledby="overview"><h2 id="overview">{copy.overviewTitle}</h2><p>{copy.overview}</p></section>
+  <section aria-labelledby="hardware"><h2 id="hardware">{copy.hardwareTitle}</h2><ul class="evidence-list">{copy.hardware.map((item) => <li>{item}</li>)}</ul></section>
+  <section aria-labelledby="software"><h2 id="software">{copy.softwareTitle}</h2><ul class="evidence-list">{copy.software.map((item) => <li>{item}</li>)}</ul></section>
+  <section aria-labelledby="pending"><h2 id="pending">{copy.pendingTitle}</h2><p>{copy.pending}</p><div class="pending card"><p>{copy.notClaimed}</p></div></section>
+  <section aria-labelledby="artifact"><h2 id="artifact">{copy.artifactTitle}</h2><p class="mono">{copy.artifact}</p></section>
+</div>
+<style>
+  .project-page{display:grid;gap:4rem}.project-page section{border-top:1px solid var(--line);padding-top:2.5rem}.project-page h2{font-size:clamp(1.7rem,3vw,2.5rem)}.project-status{display:flex;flex-wrap:wrap;align-items:center;gap:1rem;padding:1rem 1.2rem;border:1px solid #38694b;background:#102319;border-radius:.8rem}.project-status p{margin:0;color:var(--ink);max-width:70ch}.evidence-list{display:grid;gap:.7rem;padding-left:1.25rem}.evidence-list li{color:var(--muted);line-height:1.65}.evidence-list li::marker{color:var(--cyan)}.pending{border-color:#695232;background:#211b12}.pending p{margin:0;color:var(--ink)}
+</style>

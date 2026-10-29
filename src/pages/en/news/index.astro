@@ -1,0 +1,5 @@
+---
+import SiteLayout from '../../layouts/SiteLayout.astro';
+import LatestUpdates from '../../components/LatestUpdates.astro';
+---
+<SiteLayout title="News & updates" description="Engineering milestones and current validation status." locale="en" alternates={{en:'/en/news/',pt:'/pt/news/'}}><section class="section"><div class="shell"><div class="eyebrow">Transputer Revival / News</div><h1>News & updates</h1><p>Engineering progress, documented with explicit validation boundaries.</p></div></section><LatestUpdates locale="en" limit={100}/></SiteLayout>

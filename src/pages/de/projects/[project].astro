@@ -22,7 +22,7 @@ const entries={
  ['Später — Differenzvergleich','Synchroner Vergleich von T425-SIM und EMUL64, um die erste belegbare architektonische Abweichung sichtbar zu machen.'],
  ['Projektstatus','Konzept und Projektseite sind veröffentlicht bzw. zur Veröffentlichung vorbereitet. Eine validierte öffentliche Anwendung wird noch nicht behauptet.']]}
 } as const;
-export function getStaticPaths(){return Object.keys(entries).map(project=>({params:{project}}));}
+export function getStaticPaths(){return ['t425-sim','linkusb','t425-visual-debugger'].map(project=>({params:{project}}));}
 const project=Astro.params.project as keyof typeof entries;
 const entry=entries[project];
 ---

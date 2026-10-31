@@ -14,13 +14,13 @@ const entries={
  ['Steuersignale','RESET, ANALYSE und ERROR werden für beide Links über EP0 B2/B3 gesteuert. Die Signale sind Open-Drain mit internen Pull-ups.'],
  ['Software','Unabhängige TX/RX-Puffer mit je 256 Bytes, Erhalt partieller IN-Transfers, geordnete Datenübertragung, Ringpuffer und Backpressure. Physische ACKs werden nicht in USB-Bulk-Daten eingebettet.'],
  ['Noch nicht bestätigt','Ende-zu-Ende-Validierung mit physischer INMOS-Gegenstelle, OCCAM oder IServer über LINKUSB und Helios-Unterstützung werden nicht behauptet.']]},
- 't425-visual-debugger':{title:'T425 Visual Debugger',status:'PLANNED',description:'Didaktisches, animiertes Werkzeug zur Analyse von Mikrozyklen und Datapath des INMOS IMS T425.',sections:[
+ 't425-visual-debugger':{title:'T425 Visual Debugger',status:'IN_TEST',description:'Didaktisches, animiertes Werkzeug zur Analyse von Mikrozyklen und Datapath des INMOS IMS T425.',sections:[
  ['Ziel','Ein grafisches Labor für die schrittweise Untersuchung des echten mikroprogrammierten T425-SIM-CORE. Das Werkzeug ist kein zweiter T425-Interpreter und verändert die Architektur nicht.'],
- ['V0.1 — Trace Replay','Geplante Python/PySide6-Anwendung zum Öffnen vorhandener TSV-Traces, einschließlich F92 mit rund 42.187 Mikrozyklen und 283.399 Speicher-/UBUS-Ereignissen.'],
+ ['V0.1 — Trace Replay','Implementierte Python/PySide6-Anwendung für vorhandene TSV-Traces. F93 bestätigte 42.187 Mikrozyklen, 283.399 Speicherereignisse, 9 bestandene Tests im Container, 9 auf macOS sowie einen Qt-Offscreen-Smoke-Test.'],
  ['Animierte Visualisierung','Register A/B/C, IP, Wptr, Wdesc, MPC, CROM/MIR, Busse, ALU, Speicherzugriffe, CHANNEL, Scheduler und IServer werden soweit möglich synchron angezeigt. Animationen dürfen nur nachweisbare Datenflüsse zeigen.'],
  ['V0.2 — Live Debugger','Geplante direkte Anbindung an den realen CORE mit Pause, Mikroschritt, Haltepunkten und konsistenten Zustandsaufnahmen; keine semantische Parallelimplementierung.'],
  ['Später — Differenzvergleich','Synchroner Vergleich von T425-SIM und EMUL64, um die erste belegbare architektonische Abweichung sichtbar zu machen.'],
- ['Projektstatus','Konzept und Projektseite sind veröffentlicht bzw. zur Veröffentlichung vorbereitet. Eine validierte öffentliche Anwendung wird noch nicht behauptet.']]}
+ ['Projektstatus','V0.1 ist implementiert und automatisiert getestet; interaktive visuelle Prüfung und öffentliche Installer fehlen noch. macOS x86_64 mit Python 3.12.16 und PySide6-Essentials 6.12.0 getestet. Windows-Installer und Windows-Tests stehen aus. Der Quellcode liegt derzeit nur im kanonischen T425-SIM-Arbeitsverzeichnis und dessen lokalem Mac-Spiegel.']]}
 } as const;
 export function getStaticPaths(){return ['t425-sim','linkusb','t425-visual-debugger'].map(project=>({params:{project}}));}
 const project=Astro.params.project as keyof typeof entries;

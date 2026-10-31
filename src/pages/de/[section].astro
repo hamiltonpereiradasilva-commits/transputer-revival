@@ -13,7 +13,7 @@ const sections = {
  support: ['Unterstützen','Offene technische Bildung ermöglichen.','Freiwillige Beiträge können Leiterplatten, Bauteile, Messgeräte und Dokumentation unterstützen. Technische Inhalte bleiben öffentlich zugänglich; auf dieser Website ist kein Zahlungssystem integriert.'],
  about: ['Über uns','Ein unabhängiges Bildungs- und Entwicklungsprojekt.','Transputer Revival dokumentiert Forschung, praktische Versuche und die Wiederentdeckung der Transputer-Architektur. Es ist kein offizielles INMOS- oder Universitätsprojekt.']
 } as const;
-export function getStaticPaths(){return Object.keys(sections).map(section=>({params:{section},props:{section}}));}
+export function getStaticPaths(){return ['learn','labs','projects','architecture','history','documentation','community','support','about'].map(section=>({params:{section},props:{section}}));}
 const {section}=Astro.props; const [title,intro,body]=sections[section as keyof typeof sections];
 ---
 <SiteLayout title={title} description={intro} locale="de" alternates={{de:`/de/${section}/`,en:`/en/${section}/`,pt:`/pt/${section}/`}}>

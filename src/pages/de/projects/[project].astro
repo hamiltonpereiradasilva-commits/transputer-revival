@@ -1,0 +1,32 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+import StatusBadge from '../../../components/StatusBadge.astro';
+const entries={
+ 't425-sim':{title:'T425-SIM',status:'IN_TEST',description:'Experimentelle Rekonstruktion der INMOS-IMS-T425-Architektur mit dokumentierten Prüfgrenzen.',sections:[
+ ['Architektonischer Pfad','Der CORE verwendet den mikroprogrammierten Ausführungspfad OPR → CROM → MIR → Mikrosequencer → Datapath. Scheduler, Timer und CHANNEL werden als eigenständige Architekturmechanismen untersucht.'],
+ ['Experimenteller Meilenstein — 28. Oktober 2026','Ein isolierter experimenteller CORE führte eine authentische Boot-Datei mit 3.267 Bytes aus und gab „Hello world...“ über SP_PUTS aus. Der Lauf erreichte SP_EXIT mit Status 0.'],
+ ['Geltungsbereich','Der Erfolg betrifft ausschließlich den experimentellen F161-FIX19-Harness mit simulierten ACKs. Er bestätigt weder die physische PHY noch die vollständige Rev.C-Kompatibilität oder eine Integration in den kanonischen CORE.'],
+ ['CORE, Link-Service und PHY','Die logische Semantik der Kanäle bleibt im CORE. Link-Service vermittelt die Transportgrenze; physische DATA/ACK-Mechanismen bleiben in der PHY.'],
+ ['Offene Arbeiten','Integration von VM/IServer und OCCAM, Prüfung der noch nicht freigegebenen CORE-Änderungen sowie zukünftige Helios-Arbeiten.']]},
+ 'linkusb':{title:'LINKUSB',status:'PASS_HW',description:'RP2040-basierte USB-Schnittstelle mit zwei unabhängigen Transputer-Link-Pfaden.',sections:[
+ ['Überblick','LINKUSB bietet zwei unabhängige physische Link-Pfade. Die dokumentierten Ergebnisse unterscheiden Hardwareprüfungen, Softwareprüfungen und noch ausstehende Tests mit einer echten INMOS-Gegenstelle.'],
+ ['Hardware','USB Full-Speed, herstellerspezifisches Gerät mit VID 0x1209 und PID 0x4250. Link0 verwendet EP02 Bulk OUT / EP86 Bulk IN, Link1 EP04 Bulk OUT / EP88 Bulk IN; jeweils 64-Byte-Pakete.'],
+ ['Steuersignale','RESET, ANALYSE und ERROR werden für beide Links über EP0 B2/B3 gesteuert. Die Signale sind Open-Drain mit internen Pull-ups.'],
+ ['Software','Unabhängige TX/RX-Puffer mit je 256 Bytes, Erhalt partieller IN-Transfers, geordnete Datenübertragung, Ringpuffer und Backpressure. Physische ACKs werden nicht in USB-Bulk-Daten eingebettet.'],
+ ['Noch nicht bestätigt','Ende-zu-Ende-Validierung mit physischer INMOS-Gegenstelle, OCCAM oder IServer über LINKUSB und Helios-Unterstützung werden nicht behauptet.']]},
+ 't425-visual-debugger':{title:'T425 Visual Debugger',status:'PLANNED',description:'Didaktisches, animiertes Werkzeug zur Analyse von Mikrozyklen und Datapath des INMOS IMS T425.',sections:[
+ ['Ziel','Ein grafisches Labor für die schrittweise Untersuchung des echten mikroprogrammierten T425-SIM-CORE. Das Werkzeug ist kein zweiter T425-Interpreter und verändert die Architektur nicht.'],
+ ['V0.1 — Trace Replay','Geplante Python/PySide6-Anwendung zum Öffnen vorhandener TSV-Traces, einschließlich F92 mit rund 42.187 Mikrozyklen und 283.399 Speicher-/UBUS-Ereignissen.'],
+ ['Animierte Visualisierung','Register A/B/C, IP, Wptr, Wdesc, MPC, CROM/MIR, Busse, ALU, Speicherzugriffe, CHANNEL, Scheduler und IServer werden soweit möglich synchron angezeigt. Animationen dürfen nur nachweisbare Datenflüsse zeigen.'],
+ ['V0.2 — Live Debugger','Geplante direkte Anbindung an den realen CORE mit Pause, Mikroschritt, Haltepunkten und konsistenten Zustandsaufnahmen; keine semantische Parallelimplementierung.'],
+ ['Später — Differenzvergleich','Synchroner Vergleich von T425-SIM und EMUL64, um die erste belegbare architektonische Abweichung sichtbar zu machen.'],
+ ['Projektstatus','Konzept und Projektseite sind veröffentlicht bzw. zur Veröffentlichung vorbereitet. Eine validierte öffentliche Anwendung wird noch nicht behauptet.']]}
+} as const;
+export function getStaticPaths(){return ['t425-sim','linkusb','t425-visual-debugger'].map(project=>({params:{project}}));}
+const project=Astro.params.project as keyof typeof entries;
+const entry=entries[project];
+---
+<SiteLayout title={entry.title} description={entry.description} locale="de" alternates={{de:`/de/projects/${project}/`,en:`/en/projects/${project}/`,pt:`/pt/projects/${project}/`}}>
+<section class="section"><div class="shell narrow"><div class="eyebrow">Transputer Revival / Projekte</div><h1>{entry.title}</h1><div class="status"><StatusBadge status={entry.status}/><span>{entry.status==='PLANNED'?'In Entwicklung; keine validierte Veröffentlichung':entry.status==='IN_TEST'?'Experimenteller Stand; keine vollständige T425-Kompatibilität':'Hardware-Prüfstand; Test mit INMOS-Gegenstelle ausstehend'}</span></div><p class="lead">{entry.description}</p><div class="sections">{entry.sections.map(([title,body])=><article class="card"><h2>{title}</h2><p>{body}</p></article>)}</div>{project==='t425-visual-debugger'&&<a class="button" href="https://github.com/hamiltonpereiradasilva-commits/transputer-revival/issues/1">Entwicklung auf GitHub verfolgen ↗</a>}<p><a href="/de/projects/">← Alle Projekte</a></p></div></section>
+</SiteLayout>
+<style>.narrow{max-width:980px}.lead{font-size:1.18rem}.status{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;color:var(--muted)}.sections{display:grid;gap:1rem;margin:2rem 0}.sections h2{font-size:1.5rem}.sections p{margin-bottom:0}.narrow a:not(.button){color:var(--cyan)}</style>

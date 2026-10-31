@@ -1,0 +1,9 @@
+---
+import SiteLayout from '../../../layouts/SiteLayout.astro';
+---
+<SiteLayout title="Nachrichten und Fortschritte" description="Dokumentierte Meilensteine und Grenzen der Transputer-Revival-Experimente." locale="de" alternates={{de:'/de/news/',en:'/en/news/',pt:'/pt/news/'}}>
+<section class="section"><div class="shell"><div class="eyebrow">Transputer Revival / Nachrichten</div><h1>Nachrichten und Fortschritte</h1><p class="lead">Entwicklungsfortschritte mit überprüfbarem Geltungsbereich. Neue Meldungen werden erst nach technischer Bestätigung veröffentlicht.</p><div class="grid grid-2">
+<article class="card"><div class="eyebrow">31.10.2026 · In Entwicklung</div><h2>T425 Visual Debugger</h2><p>Die Entwicklung eines animierten, didaktischen Werkzeugs für die Analyse von T425-Mikrozyklen ist geplant. Die V0.1 soll vorhandene Traces wiedergeben; eine validierte Anwendung liegt noch nicht vor.</p><a href="/de/projects/t425-visual-debugger/">Projekt ansehen →</a></article>
+<article class="card"><div class="eyebrow">29.10.2026 · Experimenteller Nachweis</div><h2>T425-SIM: Hello World</h2><p>Ein isolierter experimenteller CORE führte eine authentische Boot-Datei aus und gab „Hello world...“ aus. Der Nachweis umfasst simulierte ACKs; die physische PHY und der kanonische CORE sind damit nicht vollständig validiert.</p><a href="/de/projects/t425-sim/">Technischen Stand ansehen →</a></article>
+<article class="card"><div class="eyebrow">Hardware-Prüfstand</div><h2>LINKUSB</h2><p>Die RP2040-Schnittstelle mit zwei Link-Pfaden wurde in definierten Hardware- und Software-Prüfschritten untersucht. Die Ende-zu-Ende-Prüfung mit einer physischen INMOS-Gegenstelle steht noch aus.</p><a href="/de/projects/linkusb/">Projekt ansehen →</a></article>
+</div></div></section></SiteLayout><style>.lead{font-size:1.2rem}.grid{margin-top:2rem}.card h2{font-size:1.6rem}.card a{color:var(--cyan)}</style>

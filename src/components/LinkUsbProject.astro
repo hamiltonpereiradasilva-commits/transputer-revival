@@ -1,10 +1,12 @@
 ---
 import StatusBadge from './StatusBadge.astro';
 import { linkUsbContent, type LinkUsbLocale } from '../data/linkusb';
+import PhysicalHelloEvidence from './PhysicalHelloEvidence.astro';
 const { locale } = Astro.props as { locale: LinkUsbLocale };
 const copy = linkUsbContent[locale];
 ---
 <div class="project-page">
+  <PhysicalHelloEvidence locale={locale} />
   <div class="project-status"><StatusBadge status="PASS_HW" /><p>{copy.statusNote}</p></div>
   <section aria-labelledby="overview"><h2 id="overview">{copy.overviewTitle}</h2><p>{copy.overview}</p></section>
   <section aria-labelledby="hardware"><h2 id="hardware">{copy.hardwareTitle}</h2><ul class="evidence-list">{copy.hardware.map((item) => <li>{item}</li>)}</ul></section>

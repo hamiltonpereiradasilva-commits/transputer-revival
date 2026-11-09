@@ -1,0 +1,24 @@
+---
+const { locale } = Astro.props as { locale: 'en' | 'pt' };
+const pt = locale === 'pt';
+---
+<section class="physical-evidence" aria-labelledby="physical-hello-world">
+  <div class="eyebrow">F306.1 · 9 NOVEMBER 2026 / 9 DE NOVEMBRO DE 2026</div>
+  <h2 id="physical-hello-world">Physical OCCAM Hello World — 9 November 2026 / Hello World OCCAM físico — 9 de novembro de 2026</h2>
+  <p>{pt ? 'A sessão física registrada no Control Center comprovou a transferência do BTL, o atendimento SP_PUTS pelo IServer e a saída Hello world... no console. Esta seção corrige a conclusão anterior sem apagar o histórico dos retestes que falharam.' : 'The physical session recorded by Control Center proved BTL transfer, SP_PUTS service by IServer, and Hello world... on the console. This section corrects the earlier conclusion without erasing the failed retest history.'}</p>
+  <div class="evidence-grid">
+    <figure class="primary-proof"><img src="/evidence/physical-hello-world/tela1_eureka.png" alt={pt ? 'Captura do console com Hello world...' : 'Console capture showing Hello world...'} /><figcaption>{pt ? 'Evidência principal: stdout Hello world... e diagnóstico SP_REPLY/LINKIO.' : 'Primary evidence: Hello world... stdout and SP_REPLY/LINKIO diagnostics.'}</figcaption></figure>
+    <figure><img src="/evidence/physical-hello-world/tela2_eureka.png" alt={pt ? 'Captura dos contadores físicos do T425-SIM e LINKUSB' : 'Physical T425-SIM and LINKUSB counters capture'} /><figcaption>{pt ? 'Evidência complementar: 3.275 DATA TX/ACK RX no Link0 e 32 bytes de retorno.' : 'Complementary evidence: 3,275 DATA TX/ACK RX on Link0 and 32 return bytes.'}</figcaption></figure>
+  </div>
+  <ul class="evidence-list">
+    <li>{pt ? 'BTL OCCAM: 3.267 bytes transmitidos e escrita concluída.' : 'OCCAM BTL: 3,267 bytes transmitted and write completed.'}</li>
+    <li>{pt ? 'LINKUSB Link0: 3.275 DATA TX e 3.275 ACK RX; retorno: 32 DATA RX e 32 ACK TX.' : 'LINKUSB Link0: 3,275 DATA TX and 3,275 ACK RX; return path: 32 DATA RX and 32 ACK TX.'}</li>
+    <li>{pt ? 'IServer atendeu SP_PUTS, enviou a resposta e encerrou com exit code 0.' : 'IServer handled SP_PUTS, sent the response, and exited with code 0.'}</li>
+    <li>{pt ? 'Não há afirmação de SP_EXIT arquitetural nem de validação do Link1.' : 'No architectural SP_EXIT or Link1 validation is claimed.'}</li>
+  </ul>
+  <p class="caveat">{pt ? 'Os retestes K6/K8 que falharam ao abrir o LinkUSB permanecem registrados como tentativas separadas; não substituem esta sessão bem-sucedida.' : 'The K6/K8 retests that failed to open LinkUSB remain recorded as separate attempts; they do not replace this successful session.'}</p>
+  <p class="downloads"><a href="/evidence/physical-hello-world/eureka_rp2040.txt">{pt ? 'Log bruto RP2040' : 'Raw RP2040 log'} ↗</a> · <a href="/evidence/physical-hello-world/snapshot_eureka.txt">{pt ? 'Snapshot completo' : 'Full snapshot'} ↗</a></p>
+</section>
+<style>
+  .physical-evidence{border:1px solid var(--line);border-radius:1rem;padding:2rem;background:linear-gradient(135deg,#0e1b22,#10251f)}.physical-evidence h2{font-size:clamp(1.7rem,3vw,2.5rem)}.evidence-grid{display:grid;gap:1rem;margin:1.5rem 0}@media(min-width:800px){.evidence-grid{grid-template-columns:1.25fr 1fr}}figure{margin:0}figure img{display:block;width:100%;height:auto;border-radius:.65rem;border:1px solid var(--line);background:#071116}.primary-proof img{box-shadow:0 0 0 2px rgba(119,234,181,.2)}figcaption{color:var(--muted);font-size:.85rem;line-height:1.5;margin-top:.55rem}.evidence-list{display:grid;gap:.65rem;padding-left:1.25rem}.evidence-list li{color:var(--muted);line-height:1.6}.evidence-list li::marker{color:var(--cyan)}.caveat{border-left:3px solid var(--amber);padding-left:1rem;color:var(--muted)}.downloads a{color:var(--cyan)}
+</style>

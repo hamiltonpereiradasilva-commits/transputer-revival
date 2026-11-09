@@ -1,4 +1,5 @@
 ---
+import PhysicalHelloEvidence from './PhysicalHelloEvidence.astro';
 const { locale } = Astro.props as { locale: 'en' | 'pt' };
 const pt = locale === 'pt';
 const copy = pt ? {
@@ -22,6 +23,7 @@ const copy = pt ? {
 };
 ---
 <div class="control-center">
+  <PhysicalHelloEvidence locale={locale} />
   <div class="status"><span aria-hidden="true">●</span><strong>{copy.stateLabel}</strong></div>
   <p class="lead">{pt ? 'Uma interface desktop para acompanhar o T425-SIM e o LINKUSB e preparar o uso do IServer INMOS original.' : 'A desktop interface for observing T425-SIM and LINKUSB and preparing use of the original INMOS IServer.'}</p>
   <div class="grid">{copy.sections.map(([title, body]) => <article class="card"><h2>{title}</h2><p>{body}</p></article>)}</div>

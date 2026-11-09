@@ -29,8 +29,8 @@ export const linkUsbContent = {
     artifactTitle: 'Reference artifact',
     artifact: 'usb_link_04g_control_hw.uf2 · 50,688 bytes · SHA256 86495ec8d7408a3cbd0a522b3ab27205b936c40b43be5b60ff25e2cf2384012d',
     integrationTitle: 'T425-SIM integration status · 9 Nov 2026',
-    integration: ['Earlier physical testing confirmed Link0 DATA/ACK and a 3,267-byte BTL transfer, followed by 24 bytes returned from the T425-SIM.', 'The later K6 IServer retest could not open LinkUSB Link0; no new BTL bytes were sent in that attempt.', 'The complete K6 Hello World response and stdout remain unverified.'],
-    integrationCaveat: 'A failed host LinkIO open is not evidence of a PHY timing failure. The last K6 attempt stopped before physical transfer.',
+    integration: ['The 9 Nov physical session recorded 3,267 BTL bytes written and 3,275 Link0 DATA TX/ACK RX, followed by 32 DATA RX/ACK TX.', 'IServer handled SP_PUTS and the console recorded Hello world... with exit code 0.', 'The later K6/K8 LinkUSB-open failure is retained as a separate retest; it did not replace the successful session.'],
+    integrationCaveat: 'No architectural SP_EXIT or Link1 validation is claimed; the exact flashed firmware hash still needs session-level provenance.',
   },
   pt: {
     title: 'LINKUSB',
@@ -60,7 +60,7 @@ export const linkUsbContent = {
     artifactTitle: 'Artefato de referência',
     artifact: 'usb_link_04g_control_hw.uf2 · 50.688 bytes · SHA256 86495ec8d7408a3cbd0a522b3ab27205b936c40b43be5b60ff25e2cf2384012d',
     integrationTitle: 'Estado da integração com o T425-SIM · 9 nov. 2026',
-    integration: ['Ensaios físicos anteriores confirmaram DATA/ACK no Link0 e a transferência de um BTL de 3.267 bytes, seguida por 24 bytes enviados pelo T425-SIM.', 'O reteste posterior com o IServer K6 não conseguiu abrir o LinkUSB Link0; essa tentativa não transmitiu novos bytes do BTL.', 'A resposta completa de Hello World e o stdout com K6 continuam sem validação.'],
-    integrationCaveat: 'Uma falha ao abrir o LinkIO host não comprova falha temporal da PHY. A última tentativa K6 parou antes da transferência física.',
+    integration: ['A sessão física de 9 de novembro registrou 3.267 bytes BTL escritos e 3.275 DATA TX/ACK RX no Link0, seguidos por 32 DATA RX/ACK TX.', 'O IServer atendeu SP_PUTS e o console registrou Hello world... com exit code 0.', 'A falha posterior K6/K8 ao abrir o LinkUSB permanece como reteste separado; ela não substitui a sessão bem-sucedida.'],
+    integrationCaveat: 'Não se afirma SP_EXIT arquitetural nem validação do Link1; o hash exato do firmware gravado ainda precisa de proveniência vinculada à sessão.',
   },
 } as const;

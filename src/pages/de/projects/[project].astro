@@ -20,9 +20,14 @@ const entries={
  ['Animierte Visualisierung','Register A/B/C, IP, Wptr, Wdesc, MPC, CROM/MIR, Busse, ALU, Speicherzugriffe, CHANNEL, Scheduler und IServer werden soweit möglich synchron angezeigt. Animationen dürfen nur nachweisbare Datenflüsse zeigen.'],
  ['V0.2 — Live Debugger','Geplante direkte Anbindung an den realen CORE mit Pause, Mikroschritt, Haltepunkten und konsistenten Zustandsaufnahmen; keine semantische Parallelimplementierung.'],
  ['Später — Differenzvergleich','Synchroner Vergleich von T425-SIM und EMUL64, um die erste belegbare architektonische Abweichung sichtbar zu machen.'],
- ['Projektstatus','Konzept und Projektseite sind veröffentlicht bzw. zur Veröffentlichung vorbereitet. Eine validierte öffentliche Anwendung wird noch nicht behauptet.']]}
+ ['Projektstatus','Konzept und Projektseite sind veröffentlicht bzw. zur Veröffentlichung vorbereitet. Eine validierte öffentliche Anwendung wird noch nicht behauptet.']]},
+ 't425-control-center':{title:'T425-SIM Control Center',status:'IN_TEST',description:'Native Desktop-Anwendung für Steuerung und Diagnose von T425-SIM und LINKUSB.',sections:[
+ ['Status','Desktop-Anwendung und Host-Diagnose sind verfügbar; die physische Hello-World-Ausführung mit dem K6-Build ist nicht bestätigt.'],
+ ['Diagnose','Die Anwendung zeigt F271-CDC-Daten des T425 und B4-Snapshots des LINKUSB. USB-Annahme wird nicht als Nachweis für physischen ACK oder architektonischen Verbrauch dargestellt.'],
+ ['INMOS IServer','Die Integration verwendet den originalen INMOS IServer und ein LINKUSB-LinkIO-Backend. Die K6-Hosttests bestanden, aber der physische Retest konnte Link0 vor dem Boot nicht öffnen.'],
+ ['Physisches Ergebnis','Eine Hello-World-Ausführung mit K6 wird nicht behauptet. Ein früherer Lauf mit dem Standardprogramm übertrug die BTL-Datei, scheiterte jedoch bei der SP-Antwortprüfung.']]}
 } as const;
-export function getStaticPaths(){return ['t425-sim','linkusb','t425-visual-debugger'].map(project=>({params:{project}}));}
+export function getStaticPaths(){return ['t425-sim','linkusb','t425-visual-debugger','t425-control-center'].map(project=>({params:{project}}));}
 const project=Astro.params.project as keyof typeof entries;
 const entry=entries[project];
 ---

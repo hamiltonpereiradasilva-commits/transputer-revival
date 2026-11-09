@@ -4,6 +4,7 @@ export const statusLabel: Record<ProjectStatus, string> = {
 };
 export const projects = [
   { slug: 't425-sim', name: 'T425-SIM', status: 'IN_TEST' as ProjectStatus, summary: 'Experimental work around a documented T425 execution path.' },
+  { slug: 't425-control-center', name: 'T425-SIM Control Center', status: 'IN_TEST' as ProjectStatus, summary: 'Desktop diagnostics and original INMOS IServer integration; physical K6 Hello World run remains unverified.' },
   { slug: 't425-visual-debugger', name: 'T425 Visual Debugger', status: 'PLANNED' as ProjectStatus, summary: 'An animated educational debugger for T425 microcycles, datapath and trace evidence (V0.1 in development).' },
   { slug: 'linkusb', name: 'LINKUSB', status: 'PASS_HW' as ProjectStatus, summary: 'A two-link RP2040 physical-link bring-up, measured in small steps.' },
   { slug: 'ttg3', name: 'TTG3', status: 'PLANNED' as ProjectStatus, summary: 'A future bridge for repeatable transputer experiments.' },

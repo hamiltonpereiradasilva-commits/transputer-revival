@@ -1,0 +1,32 @@
+---
+const { locale } = Astro.props as { locale: 'en' | 'pt' };
+const pt = locale === 'pt';
+const copy = pt ? {
+  stateLabel: 'Em validação',
+  sections: [
+    ['Estado', 'Aplicativo desktop e diagnósticos host disponíveis; execução física do Hello World com o build K6 ainda não validada.'],
+    ['Seleção de programa', 'A interface permite selecionar um arquivo BTL e conferir tamanho e SHA-256 antes de uma futura operação de boot.'],
+    ['Observabilidade', 'Consultas F271 do T425 e B4 do LINKUSB distinguem contadores observados de estados físicos que o firmware não instrumenta. Aceitação USB não é apresentada como prova de ACK nem de consumo arquitetural.'],
+    ['IServer INMOS', 'A integração utiliza o IServer original e backend LinkIO para LINKUSB. O build diagnóstico K6 passou nos testes host, mas o reteste físico não abriu o Link0 antes do Boot.'],
+    ['Resultado físico', 'Não se afirma execução K6 do Hello World. Uma execução anterior com o executável padrão transferiu o BTL e falhou ao validar a resposta SP; o K6 ainda precisa completar uma sessão física.']
+  ]
+} : {
+  stateLabel: 'Validation in progress',
+  sections: [
+    ['Current status', 'The desktop application and host diagnostics are available; physical Hello World execution with the K6 build has not been verified.'],
+    ['Program selection', 'The interface can select a BTL file and inspect its size and SHA-256 before a future boot operation.'],
+    ['Observability', 'T425 F271 and LINKUSB B4 queries distinguish measured counters from physical states that the firmware does not instrument. USB acceptance is not presented as proof of ACK or architectural consumption.'],
+    ['Original INMOS IServer', 'The integration uses the original IServer and a LINKUSB LinkIO backend. K6 host tests passed, but the physical retest could not open Link0 before Boot.'],
+    ['Physical result', 'No K6 Hello World execution is claimed. An earlier run with the standard executable transferred the BTL and failed while validating the SP reply; K6 still needs a successful physical session.']
+  ]
+};
+---
+<div class="control-center">
+  <div class="status"><span aria-hidden="true">●</span><strong>{copy.stateLabel}</strong></div>
+  <p class="lead">{pt ? 'Uma interface desktop para acompanhar o T425-SIM e o LINKUSB e preparar o uso do IServer INMOS original.' : 'A desktop interface for observing T425-SIM and LINKUSB and preparing use of the original INMOS IServer.'}</p>
+  <div class="grid">{copy.sections.map(([title, body]) => <article class="card"><h2>{title}</h2><p>{body}</p></article>)}</div>
+  <p class="note">{pt ? 'Status técnico em 09/11/2026. Nenhuma saída Hello World física é atribuída ao build K6.' : 'Technical status as of 9 Nov 2026. No physical Hello World output is attributed to the K6 build.'}</p>
+</div>
+<style>
+  .control-center{display:grid;gap:1.5rem}.status{display:flex;align-items:center;gap:.65rem;width:fit-content;padding:.7rem 1rem;border:1px solid #695232;border-radius:.7rem;background:#211b12;color:var(--amber)}.lead{font-size:1.18rem;max-width:75ch}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}.grid h2{font-size:1.25rem}.grid p{color:var(--muted);margin-bottom:0}.note{color:var(--muted);font-size:.9rem}
+</style>
